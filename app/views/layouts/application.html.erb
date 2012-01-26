@@ -2,34 +2,19 @@
 <html>
 <head>
   <title>Digg - <%= @title %></title>
-  <%= stylesheet_link_tag    "application" %>
-  <%= stylesheet_link_tag    "blueprint/screen", :media => "screen" %>
-  <%= stylesheet_link_tag    "blueprint/print", :media => "print" %>
-  
-  <%= stylesheet_link_tag    "custom", :media => "screen" %>
-  <%= javascript_include_tag "application" %>
+ <%= render 'layouts/stylesheets' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-	<header>
-	<nav class="round">
+	<%= render 'layouts/header' %>
+	<div class="content">
+		<% flash.each do |key,value|%>
+		<div class="flash <%= key %>"><%= value %>
+			</div>	
+		<% end %>	
 		
-		<ul>
-			<li><%= link_to "Domov" , root_path %></li>
-			<li><%= link_to "Kontakt" , contact_path %></li>
-			<li><%= link_to "O nas" , about_path %></li>
-		</ul>
-	</nav>
-	</header>
-	<div class="content">	
 		<%= yield %>
 	</div>
-	<footer>
-		<nav class="round">
-		<ul>
-			<li><%= link_to "Stran izdelal" , "#"%></li>
-			<li><%= link_to "Validation" , "#"%></li>
-		</ul>
-	</footer>
+	<%= render 'layouts/footer' %>
 </body>
 </html>

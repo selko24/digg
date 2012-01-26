@@ -1,0 +1,15 @@
+<% @users.each do |user| %>
+	<%= user.id %>
+	<%= user.admin %>
+	<%= user.name %>
+	<%= user.surname %>
+	(<%= user.email %>)
+	<% if admin? %>
+	
+	<%= link_to "Izbriši", user, :method => :delete,
+:confirm => "A si ziher?"
+%> 
+<% end %>
+<%= link_to "Uredi", edit_user_path(user) %> 
+	<br />
+<% end %>

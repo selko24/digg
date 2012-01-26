@@ -1,8 +1,21 @@
 Digg::Application.routes.draw do
   
+ 
+  # get "users/new"
+  resources :sessions, :only => [:new, :create, :destroy]
+  resources :users
+  
+  root :to => "pages#home"
+  
+  match '/login', :to => 'sessions#new'
+  match '/logout', :to => 'sessions#destroy'
+  
+  match '/registration', :to => 'users#new'
   match '/contact', :to => 'pages#contact'
   match '/about', :to => 'pages#about' 
-  root :to => 'pages#home'
+  match '/home', :to => 'pages#home' 
+
+  
   
   #get "pages/home"
    
